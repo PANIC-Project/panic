@@ -32,7 +32,8 @@
             <a class="brand" href="/">Panic Project</a>
             <div class="nav-collapse collapse">
               <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              <% " TODO: re-enable this once we have auth set up " %>
+              <% if false %>Logged in as <a href="#" class="navbar-link">Username</a> <% end %>
               </p>
               <ul class="nav">
                 <li class="<%= 'active' if current_page? :controller => :about, :action => 'index' %>">
