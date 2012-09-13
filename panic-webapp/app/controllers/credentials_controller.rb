@@ -1,4 +1,6 @@
 class CredentialsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /credentials
   # GET /credentials.json
   def index

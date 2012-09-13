@@ -1,4 +1,6 @@
 class LeaksController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /leaks
   # GET /leaks.json
   def index

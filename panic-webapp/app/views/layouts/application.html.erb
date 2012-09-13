@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Panic Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tag %>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -36,13 +37,13 @@
               <% if false %>Logged in as <a href="#" class="navbar-link">Username</a> <% end %>
               </p>
               <ul class="nav">
-                <li class="<%= 'active' if current_page? :controller => :about, :action => 'index' %>">
+                <li class="<%= 'active' if action_name == 'index' %>">
                   <a href="/">Home</a>
                 </li>
-                <li class="<%= 'active' if current_page? :controller => :about, :action => 'about' %>">
+                <li class="<%= 'active' if action_name == 'about' %>">
                   <a href="/about">About</a>
                 </li>
-                <li class="<%= 'active' if current_page? :controller => :about, :action => 'contact' %>">
+                <li class="<%= 'active' if action_name == 'contact' %>">
                   <a href="/contact">Contact</a>
                 </li>
               </ul>
@@ -67,6 +68,9 @@
         <div class="span9">
           <div class="row-fluid">
             <div class="span12">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+
               <%= yield -%>
             </div><!--/span-->
           </div><!--/row-->
@@ -80,19 +84,7 @@
       </footer>
     </div><!--/.fluid-container-->
 
-    <%= javascript_include_tag "jquery" %>
-    <%= javascript_include_tag "bootstrap-transition" %>
-    <%= javascript_include_tag "bootstrap-alert" %>
-    <%= javascript_include_tag "bootstrap-modal" %>
-    <%= javascript_include_tag "bootstrap-dropdown" %>
-    <%= javascript_include_tag "bootstrap-scrollspy" %>
-    <%= javascript_include_tag "bootstrap-tab" %>
-    <%= javascript_include_tag "bootstrap-tooltip" %>
-    <%= javascript_include_tag "bootstrap-popover" %>
-    <%= javascript_include_tag "bootstrap-button" %>
-    <%= javascript_include_tag "bootstrap-collapse" %>
-    <%= javascript_include_tag "bootstrap-carousel" %>
-    <%= javascript_include_tag "bootstrap-typeahead" %>
+    <%= javascript_include_tag "application" %>
 
   </body>
 </html>
