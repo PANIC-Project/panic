@@ -18,6 +18,8 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
+gem 'rb-readline'
+gem 'pry'
 
 # Use unicorn as the web server
 gem 'unicorn'
