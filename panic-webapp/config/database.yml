@@ -19,16 +19,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: panic_production
   pool: 5
-  timeout: 5000
-
-#  TODO: Re-enable me!
-#  adapter: mysql2
-#  encoding: utf8
-#  database: panic_production
-#  pool: 5
-#  username: root
-#  password: p@n1c4pp
-#  socket: /tmp/mysql.sock
+  username: panic
+  password: t3hp4n1cz
+  host: localhost
