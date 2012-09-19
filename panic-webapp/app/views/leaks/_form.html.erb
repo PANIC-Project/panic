@@ -12,12 +12,30 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :address %><br />
+    <%= f.label :address %>
     <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :file_header %>
+
+    <p>
+    Possible fields are: 
+    <code>username</code>, 
+    <code>hash</code>, 
+    <code>password</code>, 
+    <code>email</code>,
+    and <code>_</code> (to represent a field to skip).
+    </p>
+
+    <%= f.text_field :csv_header %>
+  </div>
+  <div class="field">
+    <%= f.label :data_csv %>
+    <%= f.file_field :data_csv %>
   </div>
   <div class="actions">
     <%= f.submit %>

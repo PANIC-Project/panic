@@ -4,3 +4,5 @@
 
 <%= link_to 'Show', @leak %> |
 <%= link_to 'Back', leaks_path %>
+
+<%= render :partial => "credentials", :object => @leak.credentials %>

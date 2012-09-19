@@ -1,15 +1,13 @@
-<p id="notice"><%= notice %></p>
+<h3><%= @leak.name %></h3>
 
-<p>
-  <b>Address:</b>
+<% if @leak.address != '' %>
+  <p>
+  <b>Source Address:</b>
   <%= @leak.address %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @leak.name %>
-</p>
-
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_leak_path(@leak) %> |
 <%= link_to 'Back', leaks_path %>
+
+<%= render :partial => "credentials", :object => @leak.credentials %>

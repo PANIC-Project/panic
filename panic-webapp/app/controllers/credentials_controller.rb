@@ -78,7 +78,7 @@ class CredentialsController < ApplicationController
     @credential.destroy
 
     respond_to do |format|
-      format.html { redirect_to credentials_url }
+      format.html { redirect_to @credential.leak }
       format.json { head :ok }
     end
   end

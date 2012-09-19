@@ -1,3 +1,19 @@
 // Place all the styles related to the leaks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.credentials td, table.credentials th {
+  padding: 2px 6px;
+}
+
+table.credentials td:nth-child(odd), table.credentials th:nth-child(odd) {
+  background-color: #E5E5E5;
+}
+
+div.field {
+  padding: 5px 0px;
+}
+
+table.listing td {
+  padding: 2px 5px;
+}
