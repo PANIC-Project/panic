@@ -10,4 +10,5 @@
 <%= link_to 'Edit', edit_leak_path(@leak) %> |
 <%= link_to 'Back', leaks_path %>
 
-<%= render :partial => "credentials", :object => @leak.credentials %>
+<h4>Sample of <%= @leak.credentials.size %> Associated Credentials</h4>
+<%= render :partial => "credentials", :object => @leak.credentials_snippet %>

@@ -1,5 +1,6 @@
 class Leak < ActiveRecord::Base
   has_many :credentials
+  has_many :credentials_snippet, :class_name => "Credential", :limit => 8
   after_commit :create_credentials_from_data_csv
 
   def csv_header
