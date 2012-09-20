@@ -26,4 +26,3 @@ class Leak < ActiveRecord::Base
     end
   end
 end
-
