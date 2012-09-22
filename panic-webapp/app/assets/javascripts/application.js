@@ -7,4 +7,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore-min
+
+//= bootstrap-affix
+//= bootstrap-alert
+//= bootstrap-button
+//= bootstrap-carousel
+//= bootstrap-collapse
+//= bootstrap-dropdown
+//= bootstrap-modal
+//= bootstrap-scrollspy
+//= bootstrap-tab
+//= bootstrap-tooltip
+//= bootstrap-transition
+//= bootstrap-typeahead
+
 //= require_tree .
