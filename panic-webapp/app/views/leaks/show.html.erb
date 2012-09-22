@@ -1,4 +1,4 @@
-<h3><%= @leak.name %></h3>
+<h2><%= @leak.name %></h2>
 
 <% if @leak.address != '' %>
   <p>
@@ -10,5 +10,48 @@
 <%= link_to 'Edit', edit_leak_path(@leak) %> |
 <%= link_to 'Back', leaks_path %>
 
-<h4>Sample of <%= @leak.credentials.size %> Associated Credentials</h4>
-<%= render :partial => "credentials", :object => @leak.credentials_snippet %>
+<div id="credentials" class="leak-info">
+  <h3>Sample of <%= @leak.credentials.size %> Associated Credentials</h3>
+  <%= render :partial => "credentials", :object => @leak.credentials_snippet %>
+</div>
+
+<div id="stats" class="leak-info">
+  <h3>Stats</h3>
+  <table class="stats">
+    <tr>
+      <th></th>
+      <th>Mean</th>
+      <th>Median</th>
+      <th>Standard Deviation</th>
+    </tr>
+    <% [ :length, :character_complexity, :strength ].each do |stat| %>
+      <tr>
+        <th><%= stat.to_s.titleize %></th>
+        <td><%= number_with_precision @leak.stats[stat][:mean], :precision => 2 %></td>
+        <td><%= number_with_precision @leak.stats[stat][:median], :precision => 2 %></td>
+        <td><%= number_with_precision @leak.stats[stat][:standard_deviation], :precision => 2 %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div id="charts" class="leak-info">
+  <h3>Strength Distribution</h3>
+
+  <div id="strength-canvas" class="plot"></div>
+
+  <% if false %>
+  <h5>Length</h5>
+  <div id="length-canvas" class="plot"></div>
+
+  <h5>Character Complexity</h5>
+  <div id="complexity-canvas" class="plot"></div>
+  <% end %>
+
+  <script type="text/javascript">
+    var stats = <%= JSON.dump(@leak.stats).html_safe %>;
+    $.plot($("#strength-canvas"), [ { data: flotable(stats.strength.buckets), bars: { show: true } } ]);
+    //$.plot($("#length-canvas"), [ { data: flotable(stats.length.buckets), bars: { show: true } } ]);
+    //$.plot($("#complexity-canvas"), [ { data: flotable(stats.character_complexity.buckets), bars: { show: true } } ]);
+  </script>
+</div>

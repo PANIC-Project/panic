@@ -17,3 +17,19 @@ div.field {
 table.listing td {
   padding: 2px 5px;
 }
+
+table.stats {
+  td, th {
+    text-align: left;
+    padding: 0 5px;
+  }
+}
+
+.leak-info {
+  padding: 15px 0;
+}
+
+.plot {
+  width: 500px;
+  height: 350px;
+}
