@@ -51,12 +51,12 @@ class Leak < ActiveRecord::Base
 end
 
 class Array
-  def sum
-    inject(0.0) { |total, i| total + i }
+  def numeric_sum
+    inject(0.0) { |total, i| total + i.to_f }
   end
 
   def mean
-    sum / size
+    numeric_sum / size
   end
 
   def sample_variance
