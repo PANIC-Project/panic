@@ -73,6 +73,7 @@ class Array
   end
 
   def buckets(n)
+    return {} if empty?
     big = max + 0.000000001 # This is a hack, but I'm in a hurry.  :-(
     small = min
     step = (big.to_f - small.to_f) / n
