@@ -21,6 +21,7 @@ class Leak < ActiveRecord::Base
   end
 
   def create_credentials_from_data_csv
+    return if @updating_stats
     if @data_csv and @csv_header
       @data_csv.each_line do |line|
         row = line.split(/, */)
@@ -29,8 +30,10 @@ class Leak < ActiveRecord::Base
         self.credentials << credential
         credential.save
       end
+      @updating_stats = true
       recalc_stats
       save
+      @updating_stats = false
     end
   end
 
