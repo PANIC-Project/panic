@@ -10,9 +10,9 @@
 <%= link_to 'Edit', edit_leak_path(@leak) %> |
 <%= link_to 'Back', leaks_path %>
 
-<div id="credentials" class="leak-info">
-  <h3>Sample of <%= @leak.credentials.size %> Associated Credentials</h3>
-  <%= render :partial => "credentials", :object => @leak.credentials_snippet %>
+<div class="leak-info">
+  <h3><%= @leak.credentials.size %> Associated Credentials</h3>
+  <h3>Leaked on <%= @leak.leaked_on %></h3>
 </div>
 
 <div id="stats" class="leak-info">
