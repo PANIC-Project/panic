@@ -5,7 +5,7 @@
   <tr>
     <td><%= link_to leak.name, leak %></td>
     <td><%= leak.address %></td>
-    <td><%= leak.credentials.size %></td>
+    <td style="text-align: right"><%= leak.credentials.size %> creds</td>
     <td>
       <%= link_to image_tag("pencil.png"), edit_leak_path(leak) %>
       <%= link_to image_tag("cross.png"), leak, confirm: 'Are you sure?', method: :delete %>
