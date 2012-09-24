@@ -1,23 +1,23 @@
-<h2><%= @leak.name %></h2>
-
-<% if @leak.address != '' %>
-  <p>
-  <b>Source Address:</b>
-  <%= @leak.address %>
-  </p>
+<% if @leak.leaked_on %>
+  <h2 class="timestamp">
+    <%= @leak.leaked_on.strftime("%b %e %Y") %> <br/>
+  </h2>
 <% end %>
 
-<%= link_to 'Edit', edit_leak_path(@leak) %> |
-<%= link_to 'Back', leaks_path %>
+<h2>
+  <%= @leak.name %>
+  <%= link_to image_tag("pencil.png"), edit_leak_path(@leak) %>
+</h2>
 
 <div class="leak-info">
-  <h3><%= @leak.credentials.size %> Associated Credentials</h3>
-  <h3>Leaked on <%= @leak.leaked_on %></h3>
+  <% if @leak.address != '' %>
+    <p><%= @leak.address %></p>
+  <% end %>
 </div>
 
 <div id="stats" class="leak-info">
-  <h3>Stats</h3>
-  <table class="stats">
+  <h4><%= @leak.credentials.size %> credentials</h4>
+  <table class="stats zebra">
     <tr>
       <th></th>
       <th>Mean</th>

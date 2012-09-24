@@ -5,5 +5,5 @@
 <%= link_to 'Show', @leak %> |
 <%= link_to 'Back', leaks_path %>
 
-<h4>All Associated Credentials</h4>
-<%= render :partial => "credentials", :object => @leak.credentials %>
+<h4>Showing <%= @leak.credentials_snippet.size %> credentials of <%= @leak.credentials.size %> total</h4>
+<%= render :partial => "credentials", :object => @leak.credentials_snippet %>
