@@ -77,15 +77,22 @@ class Array
 
   def buckets(n)
     return {} if empty?
-    big = max + 0.000000001 # This is a hack, but I'm in a hurry.  :-(
+    big = max + 1 # Push the max out further so the max value has a bucket to go in
     small = min
-    step = (big.to_f - small.to_f) / n
-    # Produces an array of n evenly spaced values from min to just below max
+    if big.to_f - small.to_f < n
+      n = (big.to_f - small.to_f).to_i
+      step = 1
+    else
+      step = (big.to_f - small.to_f) / n
+    end
+    puts "n: #{n}, step: #{step}"
+
+    # Produces an array of n evenly spaced values from min to just above max
     keys = (0..n-1).map { |i| small + i * step }
     bucket_hash = Hash[keys.map { |k| [k, 0] }]
     each do |value|
       index = ((value - small) / step).to_i
-      hash_index = small + index * step
+      puts "index: #{index}, bucket_index: #{small + index * step}"
       bucket_hash[small + index * step] += 1
     end
     return bucket_hash
