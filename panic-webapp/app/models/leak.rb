@@ -85,14 +85,12 @@ class Array
     else
       step = (big.to_f - small.to_f) / n
     end
-    puts "n: #{n}, step: #{step}"
 
     # Produces an array of n evenly spaced values from min to just above max
     keys = (0..n-1).map { |i| small + i * step }
     bucket_hash = Hash[keys.map { |k| [k, 0] }]
     each do |value|
       index = ((value - small) / step).to_i
-      puts "index: #{index}, bucket_index: #{small + index * step}"
       bucket_hash[small + index * step] += 1
     end
     return bucket_hash
