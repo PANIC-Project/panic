@@ -15,42 +15,44 @@
   <% end %>
 </div>
 
-<div id="stats" class="leak-info">
-  <h4><%= @leak.credentials.size %> credentials; <%= @leak.passwords.size %> passwords</h4>
-  <table class="stats zebra">
-    <tr>
-      <th></th>
-      <th>Mean</th>
-      <th>Median</th>
-      <th>Std Dev</th>
-    </tr>
-    <% [ :length, :character_complexity, :strength ].each do |stat| %>
+<% if @leak.stats %>
+  <div id="stats" class="leak-info">
+    <h4><%= @leak.credentials.size %> credentials; <%= @leak.passwords.size %> passwords</h4>
+    <table class="stats zebra">
       <tr>
-        <th><%= stat.to_s.titleize %></th>
-        <td><%= number_with_precision @leak.stats[stat][:mean], :precision => 2 %></td>
-        <td><%= number_with_precision @leak.stats[stat][:median], :precision => 2 %></td>
-        <td><%= number_with_precision @leak.stats[stat][:standard_deviation], :precision => 2 %></td>
+        <th></th>
+        <th>Mean</th>
+        <th>Median</th>
+        <th>Std Dev</th>
       </tr>
-    <% end %>
-  </table>
-</div>
-
-<% if @leak.stats[:strength][:median] %>
-  <div id="charts" class="leak-info">
-    <h4>Strength Distribution</h4>
-    <div id="strength-canvas" class="plot"></div>
-
-    <h4>Length Distribution</h4>
-    <div id="length-canvas" class="plot"></div>
-
-    <h4>Character Complexity Distribution</h4>
-    <div id="complexity-canvas" class="plot"></div>
-
-    <script type="text/javascript">
-      var stats = <%= JSON.dump(@leak.stats).html_safe %>;
-      make_distribution("#strength-canvas", stats.strength, "#7C7");
-      make_distribution("#length-canvas", stats.length, "#77C");
-      make_distribution("#complexity-canvas", stats.character_complexity, "#C77");
+      <% [ :length, :character_complexity, :strength ].each do |stat| %>
+        <tr>
+          <th><%= stat.to_s.titleize %></th>
+          <td><%= number_with_precision @leak.stats[stat][:mean], :precision => 2 %></td>
+          <td><%= number_with_precision @leak.stats[stat][:median], :precision => 2 %></td>
+          <td><%= number_with_precision @leak.stats[stat][:standard_deviation], :precision => 2 %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+  <% if @leak.stats[:strength][:median] %>
+    <div id="charts" class="leak-info">
+      <h4>Strength Distribution</h4>
+      <div id="strength-canvas" class="plot"></div>
+  
+      <h4>Length Distribution</h4>
+      <div id="length-canvas" class="plot"></div>
+  
+      <h4>Character Complexity Distribution</h4>
+      <div id="complexity-canvas" class="plot"></div>
+  
+      <script type="text/javascript">
+        var stats = <%= JSON.dump(@leak.stats).html_safe %>;
+        make_distribution("#strength-canvas", stats.strength, "#7C7");
+        make_distribution("#length-canvas", stats.length, "#77C");
+        make_distribution("#complexity-canvas", stats.character_complexity, "#C77");
       </script>
     </div>
   <% end %>
+<% end %>
