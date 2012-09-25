@@ -15,9 +15,9 @@
   <% end %>
 </div>
 
-<% if @leak.stats %>
-  <div id="stats" class="leak-info">
-    <h4><%= @leak.credentials.size %> credentials; <%= @leak.passwords.size %> passwords</h4>
+<div id="stats" class="leak-info">
+  <h4><%= @leak.credentials.size %> credentials; <%= @leak.passwords.size %> passwords</h4>
+  <% if @leak.stats and @leak.stats[:strength][:median] %>
     <table class="stats zebra">
       <tr>
         <th></th>
@@ -34,25 +34,25 @@
         </tr>
       <% end %>
     </table>
-  </div>
-  
-  <% if @leak.stats[:strength][:median] %>
-    <div id="charts" class="leak-info">
-      <h4>Strength Distribution</h4>
-      <div id="strength-canvas" class="plot"></div>
-  
-      <h4>Length Distribution</h4>
-      <div id="length-canvas" class="plot"></div>
-  
-      <h4>Character Complexity Distribution</h4>
-      <div id="complexity-canvas" class="plot"></div>
-  
-      <script type="text/javascript">
-        var stats = <%= JSON.dump(@leak.stats).html_safe %>;
-        make_distribution("#strength-canvas", stats.strength, "#7C7");
-        make_distribution("#length-canvas", stats.length, "#77C");
-        make_distribution("#complexity-canvas", stats.character_complexity, "#C77");
-      </script>
-    </div>
   <% end %>
+</div>
+
+<% if @leak.stats and @leak.stats[:strength][:median] %>
+  <div id="charts" class="leak-info">
+    <h4>Strength Distribution</h4>
+    <div id="strength-canvas" class="plot"></div>
+
+    <h4>Length Distribution</h4>
+    <div id="length-canvas" class="plot"></div>
+
+    <h4>Character Complexity Distribution</h4>
+    <div id="complexity-canvas" class="plot"></div>
+
+    <script type="text/javascript">
+      var stats = <%= JSON.dump(@leak.stats).html_safe %>;
+      make_distribution("#strength-canvas", stats.strength, "#7C7");
+      make_distribution("#length-canvas", stats.length, "#77C");
+      make_distribution("#complexity-canvas", stats.character_complexity, "#C77");
+    </script>
+  </div>
 <% end %>
