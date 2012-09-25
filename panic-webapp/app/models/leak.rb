@@ -5,7 +5,7 @@ class Leak < ActiveRecord::Base
   after_commit :create_credentials_from_data_csv
 
   def passwords
-    credentials.where("password not null")
+    credentials.where("password is not null")
   end
 
   def csv_header
