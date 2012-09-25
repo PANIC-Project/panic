@@ -11,6 +11,7 @@ PanicWebapp::Application.routes.draw do
 
   resources :leaks
   resources :credentials
+  match 'overview' => 'overview#index'
   match 'about' => 'about#about'
   match 'contact' => 'about#contact'
   root :to => 'about#index'

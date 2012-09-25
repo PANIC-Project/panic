@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924085722) do
+ActiveRecord::Schema.define(:version => 20120925150617) do
 
   create_table "credentials", :force => true do |t|
     t.string   "username"
@@ -30,6 +30,18 @@ ActiveRecord::Schema.define(:version => 20120924085722) do
     t.datetime "updated_at"
     t.text     "stats"
     t.datetime "leaked_on"
+  end
+
+  create_table "stat_overviews", :force => true do |t|
+    t.text     "strength_points"
+    t.text     "length_points"
+    t.text     "complexity_points"
+    t.text     "length_distribution"
+    t.text     "strength_distribution"
+    t.text     "complexity_distribution"
+    t.text     "most_common_passwords"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
