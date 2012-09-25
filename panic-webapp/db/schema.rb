@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925214208) do
+ActiveRecord::Schema.define(:version => 20120925215310) do
 
   create_table "credentials", :force => true do |t|
     t.string   "username"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20120925214208) do
     t.datetime "updated_at"
   end
 
+  add_index "credentials", ["leak_id", "password"], :name => "index_credentials_on_leak_id_and_password"
+  add_index "credentials", ["leak_id"], :name => "index_credentials_on_leak_id"
   add_index "credentials", ["password"], :name => "index_credentials_on_password"
 
   create_table "leaks", :force => true do |t|
