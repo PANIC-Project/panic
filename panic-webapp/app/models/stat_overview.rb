@@ -10,7 +10,7 @@ class StatOverview < ActiveRecord::Base
   serialize :most_common_passwords
 
   def calc_top_passwords
-    raw_sql = "SELECT COUNT(password), password FROM credentials WHERE password is not null GROUP BY password"
+    raw_sql = "SELECT COUNT(password) as pw_count, password FROM credentials WHERE password is not null GROUP BY password ORDER BY pw_count DESC LIMIT 20"
     self.most_common_passwords = ActiveRecord::Base.connection.select_all raw_sql
   end
 
