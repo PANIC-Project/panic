@@ -27,7 +27,7 @@ class StatOverview < ActiveRecord::Base
   end
 
   def calc_scatterplots
-    leaks = Leak.where("leaked_on IS NOT NULL AND stats IS NOT NULL AND leaked_on < '20151220'").order("leaked_on").select { |l| l.stats and l.stats[:length][:median] }
+    leaks = Leak.where("leaked_on IS NOT NULL AND stats IS NOT NULL AND leaked_on < '2015-12-20'").order("leaked_on").select { |l| l.stats and l.stats[:length][:median] }
     self.strength_points = leaks.collect { |l| [ l.leaked_on.to_i * 1000, l.stats[:strength][:median] ] }
     self.length_points = leaks.collect { |l| [ l.leaked_on.to_i * 1000, l.stats[:length][:median] ] }
     self.complexity_points = leaks.collect { |l| [ l.leaked_on.to_i * 1000, l.stats[:character_complexity][:median] ] }
