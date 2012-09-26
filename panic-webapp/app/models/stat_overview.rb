@@ -15,7 +15,8 @@ class StatOverview < ActiveRecord::Base
   end
 
   def calc_distributions
-    pws = Credential.where("password IS NOT NULL").map { |p| p.password }
+    raw_sql = "SELECT password FROM credentials WHERE password is not null"
+    pws = ActiveRecord::Base.connection.select_all raw_sql
 
     self.length_distribution = pws.collect { |pw| pw.length }.summary
     self.complexity_distribution = pws.collect { |pw| pw.character_complexity }.summary

@@ -1,7 +1,8 @@
-
 class Array
   def numeric_sum
-    inject(0.0) { |total, i| total + i.to_f }
+    s = 0.0
+    each { |i| s += i }
+    return s
   end
 
   def mean
