@@ -32,11 +32,6 @@ class Array
     else
       step = (big.to_f - small.to_f) / n
     end
-
-    puts "big: #{big}"
-    puts "small: #{small}"
-    puts "step size: #{step}"
-
     # Produces an array of n evenly spaced values from min to just above max
     keys = (0..n-1).map { |i| small + i * step }
     bucket_hash = Hash[keys.map { |k| [k, 0] }]
