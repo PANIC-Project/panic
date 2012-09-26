@@ -9,21 +9,26 @@ class StatOverview < ActiveRecord::Base
 
   serialize :most_common_passwords
 
-  def recalc_stats
-    # Cache passwords so we don't rebuild this for each calculation
-    pws = Credential.where("password IS NOT NULL").map { |p| p.password }
+  def calc_top_passwords
+    raw_sql = "SELECT COUNT(password), password FROM credentials WHERE password is not null GROUP BY password"
+    self.most_common_passwords = ActiveRecord::Base.connection.select_all raw_sql
+  end
 
-    pw_count = Hash.new
-    pws.each { |p|
-      pw_count[p] = 0 unless pw_count[p]
-      pw_count[p] += 1
-    }
-    inverted_count = pw_count.invert
-    inverted_count.keys.sort[0..10]
-    # TODO: Finish this
+  def calc_distributions
+    pws = Credential.where("password IS NOT NULL").map { |p| p.password }
 
     self.length_distribution = pws.collect { |pw| pw.length }.summary
     self.complexity_distribution = pws.collect { |pw| pw.character_complexity }.summary
     self.strength_distribution = pws.collect { |pw| pw.strength }.summary
+  end
+
+  def calc_scatterplots
+    # TODO
+  end
+
+  def calc_all
+    calc_top_passwords
+    calc_distributions
+    calc_scatterplots
   end
 end
