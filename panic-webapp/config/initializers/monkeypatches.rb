@@ -79,8 +79,11 @@ class String
     complexity += 26 if self =~ /[a-z]/
     complexity += 26 if self =~ /[A-Z]/
     complexity += 10 if self =~ /\d/
-    complexity += 26 if self =~ /[`~!@#$\%^&*()_+-=\\\|;:'",<.>\/?{}\[\]]/
+    complexity += 26 if self =~ /[`~!@#\$\%^&*()_+-=\\\|;:'",<.>\/?{}\[\]]/
     complexity += 2 if self =~ /\s/
+    if complexity < 1
+      complexity = 20 # Catchall in case we missed something
+    end
     return complexity
   end
 end

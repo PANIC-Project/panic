@@ -5,7 +5,7 @@ class Leak < ActiveRecord::Base
   after_commit :create_credentials_from_data_csv
 
   def passwords
-    credentials.where("password is not null")
+    credentials.where("password is not null").map { |p| p.password }.reject { |p| p == '' or p.nil? }
   end
 
   def csv_header
@@ -39,7 +39,7 @@ class Leak < ActiveRecord::Base
 
   def recalc_stats
     # Cache passwords so we don't rebuild this for each calculation
-    pws = passwords.map { |p| p.password }.reject { |p| p == '' or p.nil? }
+    pws = passwords
 
     lengths = pws.collect { |pw| pw.length }
     character_complexities = pws.collect { |pw| pw.character_complexity }
