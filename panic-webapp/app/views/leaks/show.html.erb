@@ -1,21 +1,19 @@
-<% if @leak.leaked_on %>
-  <h2 class="timestamp">
-    <%= @leak.leaked_on.strftime("%b %e %Y") %> <br/>
+<div class="stat-container">
+  <% if @leak.leaked_on %>
+    <h2 class="timestamp">
+      <%= @leak.leaked_on.strftime("%b %e %Y") %> <br/>
+    </h2>
+  <% end %>
+
+  <h2>
+    <%= @leak.name %>
+    <%= link_to image_tag("pencil.png"), edit_leak_path(@leak) %>
   </h2>
-<% end %>
 
-<h2>
-  <%= @leak.name %>
-  <%= link_to image_tag("pencil.png"), edit_leak_path(@leak) %>
-</h2>
-
-<div class="leak-info">
   <% if @leak.address != '' %>
     <p><%= @leak.address %></p>
   <% end %>
-</div>
 
-<div id="stats" class="leak-info">
   <h4><%= @leak.credentials.size %> credentials; <%= @leak.passwords.size %> passwords</h4>
   <% if @leak.stats and @leak.stats[:strength][:median] %>
     <table class="stats zebra">
@@ -39,14 +37,20 @@
 
 <% if @leak.stats and @leak.stats[:strength][:median] %>
   <div id="charts" class="leak-info">
-    <h4>Strength Distribution</h4>
-    <div id="strength-canvas" class="plot"></div>
+    <div class="stat-container">
+      <h4>Strength Distribution</h4>
+      <div id="strength-canvas" class="plot"></div>
+    </div>
 
-    <h4>Length Distribution</h4>
-    <div id="length-canvas" class="plot"></div>
+    <div class="stat-container">
+      <h4>Length Distribution</h4>
+      <div id="length-canvas" class="plot"></div>
+    </div>
 
-    <h4>Character Complexity Distribution</h4>
-    <div id="complexity-canvas" class="plot"></div>
+    <div class="stat-container">
+      <h4>Character Complexity Distribution</h4>
+      <div id="complexity-canvas" class="plot"></div>
+    </div>
 
     <script type="text/javascript">
       var stats = <%= JSON.dump(@leak.stats).html_safe %>;

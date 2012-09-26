@@ -30,10 +30,22 @@ table.stats {
 }
 
 .plot {
+  padding: 12px;
   width: 700px;
   height: 450px;
 }
 
 .timestamp {
   float: right;
+}
+
+.stat-container {
+  padding: 15px 22px;
+  h4 {
+    margin-bottom: 15px;
+  }
+}
+
+h3.stat {
+  padding-left: 22px;
 }
