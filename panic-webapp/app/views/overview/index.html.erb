@@ -1,21 +1,49 @@
+<% if @stats.most_common_passwords %>
+  <h3>Most Common Passwords</h3>
+  <div id="top-passwords">
+    <table>
+      <tr>
+        <th>Password</th>
+        <th>Occurrences</th>
+      </tr>
+      <% @stats.most_common_passwords.each do |pw| %>
+        <tr>
+          <td><%= pw["password"] %></td>
+          <td><%= pw["pw_count"] %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+
 <h3>Statistical Overview</h3>
 
 <div id="charts" class="leak-info">
-  <h4>All-time Strength Distribution</h4>
-  <div id="strength-canvas" class="plot"></div>
+  <% if @stats.strength_distribution %>
+    <h4>All-time Strength Distribution</h4>
+    <div id="strength-canvas" class="plot"></div>
+    <script type="text/javascript">
+      var strength_distribution = <%= JSON.dump(@stats.strength_distribution).html_safe %>;
+      make_distribution("#strength-canvas", strength_distribution, "#7C7");
+    </script>
+  <% end %>
 
-  <h4>All-time Length Distribution</h4>
-  <div id="length-canvas" class="plot"></div>
+  <% if @stats.length_distribution %>
+    <h4>All-time Length Distribution</h4>
+    <div id="length-canvas" class="plot"></div>
+    <script type="text/javascript">
+      var length_distribution = <%= JSON.dump(@stats.length_distribution).html_safe %>;
+      make_distribution("#length-canvas", length_distribution, "#77C");
+    </script>
+  <% end %>
 
-  <h4>All-time Character Complexity Distribution</h4>
-  <div id="complexity-canvas" class="plot"></div>
 
-  <script type="text/javascript">
-    var length_distribution = <%= JSON.dump(@stats.length_distribution).html_safe %>;
-    var strength_distribution = <%= JSON.dump(@stats.strength_distribution).html_safe %>;
-    var complexity_distribution = <%= JSON.dump(@stats.complexity_distribution).html_safe %>;
-    make_distribution("#strength-canvas", strength_distribution, "#7C7");
-    make_distribution("#length-canvas", length_distribution, "#77C");
-    make_distribution("#complexity-canvas", complexity_distribution, "#C77");
-  </script>
+  <% if @stats.complexity_distribution %>
+    <h4>All-time Character Complexity Distribution</h4>
+    <div id="complexity-canvas" class="plot"></div>
+    <script type="text/javascript">
+      var complexity_distribution = <%= JSON.dump(@stats.complexity_distribution).html_safe %>;
+      make_distribution("#complexity-canvas", complexity_distribution, "#C77");
+    </script>
+  <% end %>
 </div>
