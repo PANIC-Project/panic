@@ -64,7 +64,7 @@ class String
     if dictionary_word?
       length 
     else
-      Math.log(length ** character_complexity)
+      Math.log(character_complexity ** length)
     end
   end
 
