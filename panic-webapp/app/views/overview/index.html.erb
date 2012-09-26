@@ -27,10 +27,22 @@
       make_scatter("#strength-point-canvas", strength_points, "#7C7");
     </script>
   <% end %>
-
-
-
-
+  <% if @stats.length_points %>
+    <h4>Median Length Over Time</h4>
+    <div id="length-point-canvas" class="plot"></div>
+    <script type="text/javascript">
+      var length_points = <%= JSON.dump(@stats.length_points).html_safe %>;
+      make_scatter("#length-point-canvas", length_points, "#77C");
+    </script>
+  <% end %>
+  <% if @stats.complexity_points %>
+    <h4>Median Character Complexity Over Time</h4>
+    <div id="complexity-point-canvas" class="plot"></div>
+    <script type="text/javascript">
+      var complexity_points = <%= JSON.dump(@stats.complexity_points).html_safe %>;
+      make_scatter("#complexity-point-canvas", complexity_points, "#C77");
+    </script>
+  <% end %>
 
 
   <% if @stats.strength_distribution %>
