@@ -39,7 +39,7 @@ class Leak < ActiveRecord::Base
 
   def recalc_stats
     # Cache passwords so we don't rebuild this for each calculation
-    pws = passwords.map { |p| p.password }
+    pws = passwords.map { |p| p.password }.reject { |p| p == '' or p.nil? }
 
     lengths = pws.collect { |pw| pw.length }
     character_complexities = pws.collect { |pw| pw.character_complexity }
