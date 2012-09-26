@@ -65,8 +65,10 @@ class String
   end
 
   def strength
-    if dictionary_word?
-      length 
+    if length < 1
+       0.0
+    elsif dictionary_word?
+      length.to_f
     else
       Math.log(character_complexity ** length)
     end
