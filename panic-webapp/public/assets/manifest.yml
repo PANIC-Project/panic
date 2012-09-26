@@ -1,4 +1,5 @@
 ---
+add.png: add-0745403a8479f8514cd70130d79e2f20.png
 cross.png: cross-1f87fac86c438386527b5e7d5ceecb0e.png
 glyphicons-halflings-white.png: glyphicons-halflings-white-e23451ac566a4d7fadb125fe3954b58b.png
 glyphicons-halflings.png: glyphicons-halflings-27119220ffcf770cb7e11b0a4687892c.png
@@ -7,7 +8,8 @@ hero-background.png: hero-background-6ffd1c17c2ffb3d0cbffb8a24c9f334e.png
 pencil.png: pencil-ef29c01716f6ac9f97862483a4b96d0f.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
 jquery.flot.js: jquery.flot-65f158b589ccad7ea71113fc5417ae27.js
+jquery.flot.time.js: jquery.flot.time-c8e62be18e6325784861f6a4bc7b3e80.js
 jquery-ui.min.js: jquery-ui.min-8b9c16ed13b920aebcfef3197711f61b.js
 jquery.min.js: jquery.min-e3cda086d77f5617dc07d5ee81cee7b2.js
-application.js: application-77027a8807387526133c5a9d6c923de2.js
-application.css: application-d993325548b13c8aca93b7bfff2cd63d.css
+application.js: application-b79ceff34473dcec4bd891a45bb61bb4.js
+application.css: application-f86bcd8ca03f8c4357cb8ac44976b3a5.css

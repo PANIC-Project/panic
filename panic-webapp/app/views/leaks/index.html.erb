@@ -1,5 +1,7 @@
 <h1>Leaks</h1>
 
+<%= link_to "#{image_tag "add.png"} New Leak".html_safe, new_leak_path %>
+
 <table class="listing">
 <% @leaks.each do |leak| %>
   <tr>
@@ -14,5 +16,3 @@
   </tr>
 <% end %>
 </table>
-
-<%= link_to 'New Leak', new_leak_path %>

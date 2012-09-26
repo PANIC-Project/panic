@@ -4,7 +4,7 @@ class LeaksController < ApplicationController
   # GET /leaks
   # GET /leaks.json
   def index
-    @leaks = Leak.all
+    @leaks = Leak.order("leaked_on DESC")
 
     respond_to do |format|
       format.html # index.html.erb
