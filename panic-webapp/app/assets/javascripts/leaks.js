@@ -18,3 +18,15 @@ function make_distribution(canvas, data, color) {
         }
     } ]);
 }
+
+function make_scatter(canvas, point_data, point_color) {
+    if(!point_color) point_color = "#FF7";
+    $.plot($(canvas), [ {
+        data: point_data,
+        color: point_color,
+        points: { show: true }
+    } ],
+    {
+        xaxis: { mode: "time" }
+    });
+}

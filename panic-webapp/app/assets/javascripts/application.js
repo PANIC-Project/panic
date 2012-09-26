@@ -7,6 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore-min
+//= requre jquery.flot
+//= requre jquery.flot.time
 
 //= bootstrap-affix
 //= bootstrap-alert

@@ -19,6 +19,20 @@
 <h3>Statistical Overview</h3>
 
 <div id="charts" class="leak-info">
+  <% if @stats.strength_points %>
+    <h4>Median Strength Over Time</h4>
+    <div id="strength-point-canvas" class="plot"></div>
+    <script type="text/javascript">
+      var strength_points = <%= JSON.dump(@stats.strength_points).html_safe %>;
+      make_scatter("#strength-point-canvas", strength_points, "#7C7");
+    </script>
+  <% end %>
+
+
+
+
+
+
   <% if @stats.strength_distribution %>
     <h4>All-time Strength Distribution</h4>
     <div id="strength-canvas" class="plot"></div>
