@@ -4,6 +4,14 @@ class Leak < ActiveRecord::Base
   serialize :stats
   after_commit :create_credentials_from_data_csv
 
+  def password_count # TODO: this is kind of disgusting
+    credentials.where("password is not null").size
+  end
+
+  def credential_count
+    credentials.size
+  end
+
   def passwords
     credentials.where("password is not null").map { |p| p.password }.reject { |p| p == '' or p.nil? }
   end

@@ -14,7 +14,7 @@
     <p><%= @leak.address %></p>
   <% end %>
 
-  <h4><%= @leak.credentials.size %> credentials; <%= @leak.passwords.size %> passwords</h4>
+  <h4><%= @leak.credential_count %> credentials; <%= @leak.password_count %> passwords</h4>
   <% if @leak.stats and @leak.stats[:strength][:median] %>
     <table class="stats zebra">
       <tr>
